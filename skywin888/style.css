@@ -1,0 +1,178 @@
+/* ==========================================
+   1. RESET & GLOBAL STYLE (KODE ASLI ANDA)
+   ========================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    background-color: #000; 
+    color: #fff; 
+    font-family: 'Arial', sans-serif; 
+    overflow-x: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   2. UTILITY BAR (HEADER ATAS - LAPTOP)
+   ========================================== */
+.utility-bar { background: #000; padding: 10px 40px; border-bottom: 1px solid #1a1a1a; order: 1; }
+.utility-top-row { display: flex; align-items: center; justify-content: space-between; }
+.top-logo img { height: 45px; }
+.running-text-container { flex: 1; margin: 0 50px; display: flex; align-items: center; gap: 10px; }
+.running-text { color: #fff; font-size: 14px; font-weight: bold; }
+.top-right-info { display: flex; align-items: center; gap: 15px; font-size: 11px; }
+.btn-pengaduan { background: linear-gradient(to bottom, #f1c40f, #b8860b); color: #000; padding: 4px 15px; border-radius: 8px; font-weight: 900; cursor: pointer; }
+.clock-text { font-family: monospace; font-size: 13px; color: #ccc; }
+.separator { color: #444; margin: 0 5px; }
+.utility-bottom-row { display: flex; justify-content: flex-end; align-items: center; margin-top: 10px; gap: 20px; }
+.utility-icons { display: flex; align-items: center; gap: 15px; }
+.utility-icons i { font-size: 24px; color: #fff; cursor: pointer; }
+.auth-buttons { display: flex; gap: 10px; }
+.btn-login, .btn-daftar { padding: 6px 35px; border: none; font-weight: bold; border-radius: 2px; cursor: pointer; color: #000; }
+.btn-login { background: linear-gradient(to bottom, #f1c40f, #b8860b); }
+.btn-daftar { background: linear-gradient(to bottom, #ffd700, #ff8c00); }
+
+/* ==========================================
+   3. NAVIGASI MENU (LAPTOP)
+   ========================================== */
+.nav-main { background: #111; border-bottom: 2px solid #ffd700; order: 2; }
+.nav-container { display: flex; justify-content: center; overflow-x: auto; }
+.nav-item { padding: 15px 20px; text-align: center; color: #ffd700; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.nav-item i { font-size: 22px; }
+.nav-item.active { background: rgba(255, 215, 0, 0.1); border-bottom: 3px solid #ffd700; }
+
+/* ==========================================
+   4. CONTENT SECTIONS (LAPTOP)
+   ========================================== */
+main { order: 3; display: flex; flex-direction: column; }
+.slideshow-container { width: 100%; overflow: hidden; order: 1; }
+.banner-track { display: flex; width: 200%; transition: transform 0.6s ease-in-out; }
+.banner-track img { width: 50%; height: auto; }
+
+.info-section { padding: 40px 0; background: #000; order: 2; }
+.container-custom { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+.info-flex { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.jackpot-box { flex: 0 0 500px; position: relative; }
+.jackpot-bg { width: 100%; display: block; }
+.jackpot-text-layer { position: absolute; top: 54%; left: 50%; transform: translate(-50%, -50%); width: 70%; text-align: center; }
+.jackpot-number { font-family: 'Arial Black', sans-serif; font-size: 24px; font-weight: 900; color: #fff; text-shadow: 2px 2px 4px #000; white-space: nowrap; letter-spacing: -1px; }
+
+.provider-box { flex: 1; overflow: hidden; }
+.hot-title-static { font-family: 'Arial Black', sans-serif; font-size: 32px; text-align: center; letter-spacing: 5px; margin-bottom: 20px; }
+.provider-track-animate { display: flex; gap: 15px; width: max-content; animation: scroll-provider 20s linear infinite; }
+@keyframes scroll-provider { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.p-item { width: 80px; height: 80px; background: radial-gradient(circle, #2a2a2a 0%, #000 100%); border-radius: 50%; border: 1px solid #333; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.p-item img { max-width: 65%; }
+
+.hot-games-section { padding: 40px 0; background: #000; order: 3; }
+.hot-header-frame { width: 100%; display: flex; justify-content: center; margin-bottom: 30px; }
+.hot-title-bg {
+    background: linear-gradient(to right, #000 0%, #000 25%, transparent 45%, transparent 55%, #000 75%, #000 100%), url('hot.png') no-repeat center center;
+    background-size: contain; width: 100%; max-width: 1350px; height: 120px; display: flex; align-items: center; justify-content: center; position: relative; padding-top: 10px; 
+}
+.hot-games-title { font-family: 'Arial Black', sans-serif; font-size: 28px; font-weight: 900; color: #fff; letter-spacing: 8px; text-transform: uppercase; text-shadow: 2px 2px 10px #000; }
+.games-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; max-width: 1100px; margin: 0 auto; }
+.game-card { background: #111; border: 1px solid #222; border-radius: 10px; overflow: hidden; transition: 0.3s; cursor: pointer; }
+.game-img-wrapper { width: 100%; aspect-ratio: 1/1.1; overflow: hidden; }
+.game-card img { width: 100%; height: 100%; object-fit: cover; }
+
+.rtp-pulse { animation: pulse 1.5s infinite; }
+.rtp-img-icon { width: 35px; height: 35px; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* ============================================================
+   5. KHUSUS HP (HANYA INI YANG DIUBAH - SESUAI FOTO HP ANDA)
+   ============================================================ */
+@media (max-width: 768px) {
+    body { display: flex !important; flex-direction: column !important; }
+
+    /* Urutan 1: Header (Logo) */
+    .utility-bar { order: 1 !important; padding: 10px 0 !important; background: #000 !important; border: none !important; }
+    .utility-top-row { flex-direction: row !important; justify-content: center !important; }
+    .top-logo img { height: 30px !important; }
+    /* Sembunyikan elemen PC */
+    .top-right-info, .utility-icons, .running-text-container:first-child i { display: none !important; }
+
+    /* Urutan 2: Banner (Pindah ke bawah Logo) */
+    main { order: 2 !important; display: flex !important; flex-direction: column !important; }
+    .slideshow-container { order: 1 !important; margin-bottom: 0 !important; }
+
+    /* Urutan 3: Running Text (Di bawah Banner) */
+    .running-text-container { 
+        order: 2 !important; 
+        width: 100% !important; 
+        margin: 0 !important; 
+        padding: 10px 15px !important; 
+        background: #000; 
+        justify-content: flex-start !important; 
+    }
+    .running-text { font-size: 12px !important; }
+
+    /* Urutan 4: Tombol Login & Daftar (Sejajar Kuning) */
+    .utility-bottom-row { 
+        order: 3 !important; 
+        display: flex !important; 
+        margin: 0 !important; 
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    .auth-buttons { 
+        width: 100% !important; 
+        display: flex !important; 
+        gap: 0 !important; 
+    }
+    .btn-login, .btn-daftar { 
+        flex: 1 !important; 
+        padding: 15px 0 !important; 
+        border-radius: 0 !important; 
+        font-size: 14px !important;
+        border: 1px solid #000 !important;
+    }
+
+    /* Urutan 5: Menu Game (Sesuai Foto - Ada Label HOT) */
+    .nav-main { 
+        order: 4 !important; 
+        background: #000 !important; 
+        padding: 15px 0 !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .nav-container { 
+        display: flex !important; 
+        justify-content: flex-start !important; 
+        gap: 25px !important; 
+        padding: 0 20px !important;
+    }
+    .nav-item { 
+        display: none !important; 
+        flex: 0 0 auto !important; 
+        width: 70px !important; 
+        position: relative !important;
+    }
+    
+    /* Menu yang muncul di HP */
+    .nav-item:nth-child(2), .nav-item:nth-child(3), .nav-child(4), 
+    .nav-item:nth-child(5), .nav-item:nth-child(6), .nav-item:nth-child(7), 
+    .nav-item:nth-child(8) { display: flex !important; }
+
+    /* Label HOT Merah (Slots & Live Games) */
+    .nav-item:nth-child(2)::before, 
+    .nav-item:nth-child(3)::before {
+        content: "HOT";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ff0000;
+        color: #fff;
+        font-size: 8px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+        z-index: 10;
+    }
+
+    /* Turunkan elemen lainnya */
+    .info-section { order: 5 !important; }
+    .hot-games-section { order: 6 !important; }
+}

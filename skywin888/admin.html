@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FINAL ADMIN SKYWIN888</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0b1220;
+    color:white;
+    padding:20px;
+}
+
+h2{
+    text-align:center;
+    color:#00e5ff;
+}
+
+.stats{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#111827;
+    padding:10px;
+    border-radius:8px;
+    width:30%;
+    text-align:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #333;
+    text-align:center;
+}
+
+th{
+    color:#00e5ff;
+}
+
+button{
+    padding:5px 10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.acc{background:#00ff99;}
+.reject{background:#ff4d4d;color:white;}
+</style>
+
+</head>
+
+<body>
+
+<h2>FINAL BOSS ADMIN SKYWIN888</h2>
+
+<div class="stats">
+    <div class="card">
+        <h3>Total Deposit</h3>
+        <p id="dep">0</p>
+    </div>
+    <div class="card">
+        <h3>Total Withdraw</h3>
+        <p id="wd">0</p>
+    </div>
+    <div class="card">
+        <h3>Total Transaksi</h3>
+        <p id="trxCount">0</p>
+    </div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Type</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Aksi</th>
+</tr>
+</thead>
+
+<tbody id="list"></tbody>
+
+</table>
+
+<script>
+
+function render(){
+
+    let trx = JSON.parse(localStorage.getItem("trx")) || [];
+
+    let dep = trx.filter(t=>t.type==="deposit" && t.status==="approved")
+                 .reduce((a,b)=>a+b.amount,0);
+
+    let wd = trx.filter(t=>t.type==="withdraw" && t.status==="approved")
+                .reduce((a,b)=>a+b.amount,0);
+
+    dep.innerText = dep;
+    wd.innerText = wd;
+    trxCount.innerText = trx.length;
+
+    document.getElementById("list").innerHTML =
+    trx.map(t=>`
+        <tr>
+            <td>${t.user}</td>
+            <td>${t.type}</td>
+            <td>Rp${t.amount}</td>
+            <td>${t.status}</td>
+            <td>
+                <button class="acc" onclick="acc(${t.id})">ACC</button>
+                <button class="reject" onclick="reject(${t.id})">REJECT</button>
+            </td>
+        </tr>
+    `).join("");
+}
+
+function acc(id){
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let trx = JSON.parse(localStorage.getItem("trx")) || [];
+
+    let t = trx.find(x=>x.id===id);
+    let u = users.find(x=>x.username===t.user);
+
+    if(t.status==="pending"){
+        t.status="approved";
+
+        if(t.type==="deposit") u.balance += t.amount;
+        if(t.type==="withdraw") u.balance -= t.amount;
+
+        localStorage.setItem("users",JSON.stringify(users));
+        localStorage.setItem("trx",JSON.stringify(trx));
+    }
+
+    render();
+}
+
+function reject(id){
+
+    let trx = JSON.parse(localStorage.getItem("trx")) || [];
+
+    let t = trx.find(x=>x.id===id);
+    t.status="rejected";
+
+    localStorage.setItem("trx",JSON.stringify(trx));
+
+    render();
+}
+
+setInterval(render,2000);
+render();
+
+</script>
+
+</body>
+</html>
